@@ -7,6 +7,7 @@
           InNombre like(wNombreT) Const;
           InId like(wIdT) Const;
           OutMsgId like(wMsgIdT);
+          OutDescripMsg like (wErrorT);
         end-pi;
 
 
@@ -22,5 +23,9 @@
         DsUsuario.Tiempo = FnFormatoTiempo(%Time());
 
         PrInsertar(DsUsuario:wSqlState);
+        
+
+        OutMsgId = wSqlState;
+        OutDescripMsg.FnErrorSql(wSqlState);
 
       end-Proc;
